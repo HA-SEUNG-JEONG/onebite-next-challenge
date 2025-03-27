@@ -7,7 +7,7 @@ const Detail = () => {
     const router = useRouter();
     const { id } = router.query;
     const movie = dummyData.find((movie) => movie.id === Number(id));
-    console.log(movie);
+
     return (
         <div className="p-4">
             <div className="flex gap-4 justify-center mb-12">
