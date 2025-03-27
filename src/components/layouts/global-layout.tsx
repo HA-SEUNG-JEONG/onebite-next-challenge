@@ -12,7 +12,7 @@ export default function GlobalLayout({ children }: GlobalLayoutProps) {
                     ONEBITE CINEMA
                 </Link>
             </header>
-            <main className="mx-auto max-w-[800px] px-5">{children}</main>
+            <main className="mx-auto max-w-[1000px]">{children}</main>
         </div>
     );
 }
