@@ -1,6 +1,14 @@
 import React from "react";
 import MovieItem from "./MovieItem";
 import { MovieData } from "@/types";
+import { fetchRecommendMovies } from "@/lib/fetchRecommendMovie";
+
+export const getServerSideProps = async () => {
+    const recommendedMovies = await fetchRecommendMovies();
+    return {
+        props: { recommendedMovies }
+    };
+};
 
 const RecommendMovies = ({
     recommendedMovies

@@ -1,6 +1,14 @@
 import React from "react";
 import MovieItem from "./MovieItem";
 import { MovieData } from "@/types";
+import { fetchAllMovies } from "@/lib/fetchAllMovies";
+
+export const getServerSideProps = async () => {
+    const allMovies = await fetchAllMovies();
+    return {
+        props: { allMovies }
+    };
+};
 
 const AllMovies = ({ allMovies }: { allMovies: MovieData[] }) => {
     return (
