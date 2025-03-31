@@ -1,11 +1,16 @@
-import dummyData from "@/dummy.json";
 import RecommendMovies from "@/components/RecommendMovies";
 import AllMovies from "@/components/AllMovies";
+import { fetchAllMovies } from "@/lib/fetchAllMovies";
+import { GetStaticProps } from "next";
+import { MovieData } from "@/types";
+import { fetchRecommendMovies } from "@/lib/fetchRecommendMovie";
 
-export default function Home() {
-    const recommendedMovies = dummyData.slice(0, 3);
-    const allMovies = dummyData;
+interface HomeProps {
+    recommendedMovies: MovieData[];
+    allMovies: MovieData[];
+}
 
+export default function Home({ recommendedMovies, allMovies }: HomeProps) {
     return (
         <div className="space-y-8">
             <RecommendMovies recommendedMovies={recommendedMovies} />
@@ -13,3 +18,17 @@ export default function Home() {
         </div>
     );
 }
+
+export const getStaticProps: GetStaticProps = async () => {
+    const [allMovies, recommendedMovies] = await Promise.all([
+        fetchAllMovies(),
+        fetchRecommendMovies()
+    ]);
+
+    return {
+        props: {
+            allMovies,
+            recommendedMovies
+        }
+    };
+};
