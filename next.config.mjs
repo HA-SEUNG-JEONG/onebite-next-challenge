@@ -2,7 +2,12 @@
 const nextConfig = {
     reactStrictMode: true,
     images: {
-        domains: ["media.themoviedb.org"]
+        remotePatterns: [
+            {
+                protocol: "https",
+                hostname: "media.themoviedb.org"
+            }
+        ]
     }
 };
 
