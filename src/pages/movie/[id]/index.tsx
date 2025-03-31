@@ -3,10 +3,9 @@ import Image from "next/image";
 import {
     GetStaticPaths,
     GetStaticPropsContext,
-    InferGetStaticPropsType,
-    GetStaticPropsResult
+    InferGetStaticPropsType
 } from "next";
-import { MovieData } from "@/types";
+
 import { fetchAllMovies } from "@/lib/fetchAllMovies";
 import { useRouter } from "next/router";
 import { fetchDetailMovies } from "@/lib/fetchDetailMovies";
