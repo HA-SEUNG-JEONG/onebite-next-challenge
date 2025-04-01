@@ -62,7 +62,10 @@ const Detail = ({
         <div className="p-4">
             <Head>
                 <title>{movieResult.title} | 한입 씨네마</title>
-                <meta property="og:image" content={movieResult.posterImgUrl} />
+                <meta
+                    property="og:image"
+                    content={`https://onebite-cinema-otbg6c1lm-haseungjeongs-projects.vercel.app/movie/${movieResult.id}`}
+                />
                 <meta
                     property="og:title"
                     content={`${movieResult.title} | 한입 씨네마에 등록된 영화들을 살펴보세요.`}
