@@ -16,10 +16,7 @@ export default function Home({ recommendedMovies, allMovies }: HomeProps) {
         <div className="space-y-8">
             <Head>
                 <title>한입 씨네마</title>
-                <meta
-                    property="og:image"
-                    content="https://onebite-cinema-otbg6c1lm-haseungjeongs-projects.vercel.app/assets/thumbnail.png"
-                />
+                <meta property="og:image" content="/thumbnail.png" />
                 <meta property="og:title" content="한입 씨네마" />
                 <meta
                     property="og:description"
