@@ -13,7 +13,7 @@ import { fetchDetailMovies } from "@/lib/fetchDetailMovies";
 export const getStaticPaths: GetStaticPaths = async () => {
     const movies = await fetchAllMovies();
 
-    const paths = movies.slice(0, 5).map((movie) => ({
+    const paths = movies.map((movie) => ({
         params: { id: movie.id.toString() }
     }));
 

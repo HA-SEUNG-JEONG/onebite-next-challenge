@@ -1,4 +1,3 @@
-import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { searchMovie } from "@/lib/searchMovie";
@@ -16,10 +15,12 @@ const Search = ({ movies, query }: SearchPageProps) => {
     const [isLoading, setIsLoading] = useState(false);
 
     const keyword = typeof router.query.q === "string" ? router.query.q : query;
+
     useEffect(() => {
         const fetchMovies = async () => {
             const data = await searchMovie(keyword);
             setSearchResult(data);
+            setIsLoading(false);
         };
         fetchMovies();
     }, [keyword]);
