@@ -9,6 +9,7 @@ import {
 import { fetchAllMovies } from "@/lib/fetchAllMovies";
 import { useRouter } from "next/router";
 import { fetchDetailMovies } from "@/lib/fetchDetailMovies";
+import Head from "next/head";
 
 export const getStaticPaths: GetStaticPaths = async () => {
     const movies = await fetchAllMovies();
@@ -59,6 +60,23 @@ const Detail = ({
 
     return (
         <div className="p-4">
+            <Head>
+                <title>{movieResult.title} | 한입 씨네마</title>
+
+                <meta
+                    property="og:title"
+                    content={`${movieResult.title} | 한입 씨네마에 등록된 영화들을 살펴보세요.`}
+                />
+                <meta
+                    property="og:description"
+                    content={movieResult.description}
+                />
+                <meta
+                    name="viewport"
+                    content="width=device-width, initial-scale=1"
+                />
+                <link rel="icon" href="/favicon.ico" />
+            </Head>
             <div className="flex gap-4 justify-center mb-12">
                 <div className="relative aspect-[2/3] w-48 overflow-hidden rounded-lg">
                     <Image

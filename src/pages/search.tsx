@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { searchMovie } from "@/lib/searchMovie";
 import { MovieData } from "@/types";
 import MovieResults from "@/components/MovieResults";
+import Head from "next/head";
 
 interface SearchPageProps {
     movies: MovieData[];
@@ -27,6 +28,22 @@ const Search = ({ movies, query }: SearchPageProps) => {
 
     return (
         <div className="p-4">
+            <Head>
+                <title>검색 결과 | {keyword}</title>
+                <meta
+                    property="og:title"
+                    content={`${keyword} 검색 결과 | 한입 씨네마`}
+                />
+                <meta
+                    property="og:description"
+                    content={`${keyword} 검색 결과 | 한입 씨네마`}
+                />
+                <meta
+                    name="viewport"
+                    content="width=device-width, initial-scale=1"
+                />
+                <link rel="icon" href="/favicon.ico" />
+            </Head>
             <h2 className="mb-4 text-xl font-bold">
                 &quot;{keyword}&quot; 검색 결과
             </h2>
