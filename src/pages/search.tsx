@@ -10,42 +10,24 @@ interface SearchPageProps {
     query: string;
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ query }) => {
-    const searchQuery = typeof query.q === "string" ? query.q : "";
-    const movies = await searchMovie(searchQuery);
-
-    return {
-        props: {
-            movies,
-            query: searchQuery
-        }
-    };
-};
-
 const Search = ({ movies, query }: SearchPageProps) => {
     const router = useRouter();
     const [searchResult, setSearchResult] = useState(movies);
     const [isLoading, setIsLoading] = useState(false);
 
+    const keyword = typeof router.query.q === "string" ? router.query.q : query;
     useEffect(() => {
         const fetchMovies = async () => {
-            const searchQuery =
-                typeof router.query.q === "string" ? router.query.q : "";
-            setIsLoading(true);
-            try {
-                const newMovies = await searchMovie(searchQuery);
-                setSearchResult(newMovies);
-            } finally {
-                setIsLoading(false);
-            }
+            const data = await searchMovie(keyword);
+            setSearchResult(data);
         };
         fetchMovies();
-    }, [router.query.q]);
+    }, [keyword]);
 
     return (
         <div className="p-4">
             <h2 className="mb-4 text-xl font-bold">
-                &quot;{router.query.q || query}&quot; 검색 결과
+                &quot;{keyword}&quot; 검색 결과
             </h2>
             {isLoading ? (
                 <div className="flex h-[50vh] items-center justify-center">
